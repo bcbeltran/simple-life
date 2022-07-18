@@ -104,10 +104,12 @@ function App() {
 		setIsLoading(false);
 	}
 
-	loadAccounts();
-	loadOwnerContracts();
-	loadPoaContracts();
-
+	const connectWallet = () => {
+		loadAccounts();
+		loadOwnerContracts();
+		loadPoaContracts();
+	};
+	
 	useEffect(() => {
 		if(window.ethereum) {
 			window.ethereum.on('chainChanged', () => {
@@ -353,16 +355,24 @@ function App() {
 					alt="tombstone"
 					width="200"
 					height="200"
-					style={{ borderRadius: "100px", marginTop: "25px" }}
+					style={{
+						borderRadius: "100px",
+						marginTop: "25px",
+						marginBottom: "25px",
+					}}
 				/>
-
+				{!account ? (
+					<button onClick={connectWallet}>Connect Wallet</button>
+				) : (
+					<button onClick={connectWallet}>Refresh Contracts</button>
+				)}
 				{isLoading ? (
 					<Loading />
 				) : (
 					<>
 						<h1>SimpleLife</h1>
 						<p style={{ color: "red" }}>
-							THIS CONTRACT ONLY WORKS WITH RINKEBY TEST NET. DO
+							THIS CONTRACT ONLY WORKS WITH RINKEBY TESTNET. DO
 							NOT USE REAL FUNDS!!!
 						</p>
 						{ownerContracts && (
@@ -427,9 +437,10 @@ function App() {
 						)}
 
 						<hr style={{ width: "90%", color: "white" }} />
-						<p>Your address: {account}</p>
+						<h1>Current Account Info</h1>
+						<p>Address: {account}</p>
 						<p>Network: {network}</p>
-						<p>Current Balance: {balance} ETH</p>
+						<p>Balance: {balance} ETH</p>
 						<hr style={{ width: "90%", color: "white" }} />
 						<form onSubmit={handleCreateContract}>
 							<p>Want to create a new SimpleLife contract?</p>

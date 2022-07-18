@@ -22,6 +22,8 @@ export const PoaContracts = ({poaContracts, handleContractInfo}) => {
 									fontStyle: "bold",
 									padding: "2px",
 									borderRadius: "3px",
+									width: "525px",
+									margin: "2px",
 								}}
 							>
 								{contract}

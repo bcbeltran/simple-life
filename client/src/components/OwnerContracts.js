@@ -22,7 +22,9 @@ export const OwnerContracts = ({ownerContracts, handleContractInfo}) => {
 									fontSize: "22px",
 									fontStyle: "bold",
 									padding: "2px",
-									borderRadius: "3px"
+									borderRadius: "3px",
+									width: "525px",
+									margin: "2px"
 								}}
 							>
 								{contract}
